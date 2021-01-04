@@ -28,13 +28,19 @@ public class PigLatin {
     }
 
     public static String pigLatinBest(String s) {
-        if (s.toLowerCase().charAt(0) >= 97) return "yes has letter beginning";
-        return "no";
+        if (s.toLowerCase().charAt(0) >= 97) {
+            if (!(s.toLowerCase().charAt(s.length()-1) >= 97)) {
+                return pigLatin(s.substring(0, s.length()-1)) + s.charAt(s.length()-1);
+            } else {
+                return pigLatin(s);
+            }
+        }
+        return s;
     }
 
     public static void main(String[] args) {
         System.out.println(pigLatinSimple("emu"));
-        System.out.println(pigLatin("grade"));
-        System.out.println(pigLatinBest("*Emu"));
+        System.out.println(pigLatin("emu"));
+        System.out.println(pigLatinBest("apple%"));
     }
 }
