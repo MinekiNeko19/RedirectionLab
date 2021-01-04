@@ -9,7 +9,26 @@ public class PigLatin {
         }
         return translated;
     }
+
+    public static String pigLatin(String s) {
+        String[] diagraphs = new String[]{"bl", "br", "ch", "ck", "cl", "cr", 
+        "dr", "fl", "fr", "gh", "gl", "gr", "ng", "ph", 
+        "pl", "pr", "qu", "sc", "sh", "sk", "sl", "sm", 
+        "sn", "sp", "st", "sw", "th", "tr", "tw", "wh", "wr"};
+        boolean diagraph = false;
+
+        for (int i = 0; i < diagraphs.length && !diagraph; i++) {
+            if (s.substring(0, 2).equals(diagraphs[i])) diagraph = true;
+        }
+        if (diagraph==true) {
+            return s.substring(2) + s.substring(0,2) + "ay";
+        } else {
+            return pigLatinSimple(s);
+        }
+    }
+
     public static void main(String[] args) {
-        System.out.println(pigLatinSimple("aaron"));
+        System.out.println(pigLatinSimple("emu"));
+        System.out.println(pigLatin("grade"));
     }
 }
