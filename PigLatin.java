@@ -1,3 +1,5 @@
+import java.util.*;
+
 public class PigLatin {
     public static String pigLatinSimple(String s) {
         String translated = s;
@@ -17,6 +19,8 @@ public class PigLatin {
         "sn", "sp", "st", "sw", "th", "tr", "tw", "wh", "wr"};
         boolean diagraph = false;
 
+        if (s.length()<1) return pigLatinSimple(s);
+
         for (int i = 0; i < diagraphs.length && !diagraph; i++) {
             if (s.substring(0, 2).equals(diagraphs[i])) diagraph = true;
         }
@@ -30,17 +34,29 @@ public class PigLatin {
     public static String pigLatinBest(String s) {
         if (s.toLowerCase().charAt(0) >= 97) {
             if (!(s.toLowerCase().charAt(s.length()-1) >= 97)) {
-                return pigLatin(s.substring(0, s.length()-1)) + s.charAt(s.length()-1);
+                return pigLatin(s.substring(0, s.length()-1)).toLowerCase() + s.charAt(s.length()-1);
             } else {
-                return pigLatin(s);
+                return pigLatin(s).toLowerCase();
             }
         }
-        return s;
+        return s.toLowerCase();
     }
 
     public static void main(String[] args) {
-        System.out.println(pigLatinSimple("emu"));
-        System.out.println(pigLatin("emu"));
-        System.out.println(pigLatinBest("apple%"));
+        // testing each piglatin
+        // System.out.println(pigLatinSimple("emu"));
+        // System.out.println(pigLatin("emu"));
+        // System.out.println(pigLatinBest("apple%"));
+
+        Scanner text = new Scanner(System.in);
+        while (text.hasNextLine()) {
+            Scanner line = new Scanner(text.nextLine());
+            while (line.hasNext()) {
+                String word = line.next();
+                System.out.print(pigLatinBest(word)+" ");
+                // System.out.print(word + ".");
+            }
+            System.out.println();
+        }
     }
 }
