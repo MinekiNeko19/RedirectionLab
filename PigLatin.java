@@ -27,8 +27,14 @@ public class PigLatin {
         }
     }
 
+    public static String pigLatinBest(String s) {
+        if (s.toLowerCase().charAt(0) >= 97) return "yes has letter beginning";
+        return "no";
+    }
+
     public static void main(String[] args) {
         System.out.println(pigLatinSimple("emu"));
         System.out.println(pigLatin("grade"));
+        System.out.println(pigLatinBest("*Emu"));
     }
 }
